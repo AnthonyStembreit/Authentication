@@ -1,4 +1,17 @@
 header{
     display: flex;
     justify-content: space-around;
+    background-color: rgb(163, 159, 159);
+    padding: 7px;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 32px;
+    background-color: rgb(141, 92, 187);
+    border-radius: 4px;
+    padding: 5px;
+}
+a:hover{
+    background-color: rgb(202, 116, 116);
 }
