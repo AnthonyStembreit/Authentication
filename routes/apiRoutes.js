@@ -15,4 +15,5 @@ router.post("/api/login", async (req, res) => {
         }
     })
     console.log(user)
+    res.json(user)
 })
