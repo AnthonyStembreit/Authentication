@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS work_force_db;
-CREATE DATABASE work_force_db;
+DROP DATABASE IF EXISTS auth_db;
+CREATE DATABASE auth_db;
