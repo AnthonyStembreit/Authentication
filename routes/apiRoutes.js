@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/User')
 
 router.post("/api/signup", async (req, res) => {
     console.log(req.body)
-    let newUser = Users.create(req.body)
+    let newUser = User.create(req.body)
     console.log(newUser)
 })
 
 router.post("/api/login", async (req, res) => {
     console.log(req.body)
-    let user = Users.findOne({
+    let user = User.findOne({
         where:{
             email: req.body.email
         }

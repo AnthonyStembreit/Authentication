@@ -10,7 +10,6 @@ $("#loginSubmit").on("click", (e)=>{
 function loginRequest(user){
     console.log("hit")
     if(user.email === "" || user.password === ""){
-        console.log(user.email,user.password)
         return "Must have an email and password!"
     }
     $.ajax({
