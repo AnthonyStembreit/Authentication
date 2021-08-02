@@ -12,11 +12,7 @@ function loginRequest(user){
     if(user.email === "" || user.password === ""){
         return "Must have an email and password!"
     }
-    $.ajax({
-        method: "POST",
-        body: user,
-        url: "/api/login"
-    }).then((data) => {
+    $.post("/api/login", user).then((data) => {
         console.log(data)
     })
 }

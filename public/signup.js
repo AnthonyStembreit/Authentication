@@ -5,18 +5,14 @@ $("#signupSubmit").on("click", (e)=>{
         email: $("#email-signup").val(),
         password: $("#password-signup").val()
     }
-    // signupRequest(newUser)
+    signupRequest(newUser)
 })
-// function signupRequest(user){
-//     console.log(user)
-//     if(user.email === "" || user.password === ""){
-//         return "Must have an email and password!"
-//     }
-//     $.ajax({
-//         method: "POST",
-//         body: user,
-//         url: "/api/signup"
-//     }).then((data) => {
-//         console.log(data)
-//     })
-// }
+function signupRequest(user){
+    console.log(user)
+    if(user.email === "" || user.password === ""){
+        return "Must have an email and password!"
+    }
+    $.post("/api/signup", user).then((data) => {
+        console.log(data)
+    })
+}
