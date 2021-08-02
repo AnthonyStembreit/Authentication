@@ -8,7 +8,7 @@ $("#loginSubmit").on("click", (e)=>{
 })
 
 function loginRequest(user){
-    console.log("hit")
+    console.log(user)
     if(user.email === "" || user.password === ""){
         return "Must have an email and password!"
     }
