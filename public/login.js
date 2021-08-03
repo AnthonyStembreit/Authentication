@@ -12,7 +12,10 @@ function loginRequest(user){
     if(user.email === "" || user.password === ""){
         return "Must have an email and password!"
     }
-    $.post("/api/login", user).then((data) => {
-        console.log(data)
-    })
+    $.post("/api/login", user).then(function() {
+        window.location.replace("/dashboard");
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
 }
