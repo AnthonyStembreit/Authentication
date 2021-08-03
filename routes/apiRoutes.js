@@ -19,7 +19,7 @@ router.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
 });
 
-router.get("/logout", function (req, res) {
+router.get("/api/logout", function (req, res) {
     req.logout();
     res.redirect("/");
 });
