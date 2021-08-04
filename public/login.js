@@ -8,7 +8,6 @@ $("#loginSubmit").on("submit", (e)=>{
     $("#email-login").val("")
     loginRequest(userInfo)
 })
-
 function loginRequest(user){
     console.log(user)
     if(user.email === "" || user.password === ""){

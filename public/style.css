@@ -27,6 +27,9 @@ button:hover{
     background-color: rgb(219 188 247 / 92%);
     border: rgb(193, 145, 233) groove 2px;
 }
+.active-nav{
+    background-color: rgb(202, 116, 116);
+}
 a:hover{
     background-color: rgb(202, 116, 116);
 }
