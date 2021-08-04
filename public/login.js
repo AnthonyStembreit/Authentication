@@ -1,4 +1,4 @@
-$("#loginSubmit").on("click", (e)=>{
+$("#loginSubmit").on("submit", (e)=>{
     e.preventDefault();
     let userInfo = {
         email: $("#email-login").val(),

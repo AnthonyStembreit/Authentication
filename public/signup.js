@@ -1,4 +1,4 @@
-$("#signupSubmit").on("click", (e)=>{
+$("#signupSubmit").on("submit", (e)=>{
     e.preventDefault();
     let newUser = {
         name: $("#name-signup").val(),
