@@ -1,6 +1,7 @@
 header{
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     background-color: rgb(163, 159, 159);
     padding: 7px;
 }
@@ -14,4 +15,8 @@ a{
 }
 a:hover{
     background-color: rgb(202, 116, 116);
+}
+header p{
+    width:100%;
+    text-align:center;
 }
