@@ -4,8 +4,11 @@ $("#signupSubmit").on("click", (e)=>{
         name: $("#name-signup").val(),
         email: $("#email-signup").val(),
         password: $("#password-signup").val()
-    }
-    signupRequest(newUser)
+    };
+    $("#name-signup").val("");
+    $("#email-signup").val("");
+    $("#password-signup").val("");
+    signupRequest(newUser);
 })
 function signupRequest(user){
     console.log(user)

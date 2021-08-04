@@ -4,6 +4,8 @@ $("#loginSubmit").on("click", (e)=>{
         email: $("#email-login").val(),
         password: $("#password-login").val()
     }
+    $("#password-login").val("")
+    $("#email-login").val("")
     loginRequest(userInfo)
 })
 
