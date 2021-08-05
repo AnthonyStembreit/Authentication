@@ -19,7 +19,7 @@ function signupRequest(user){
     $.post("/api/signup", user).then((data) => {
        if(data[1]=== false){
         $("#alert-signup").attr("style", "display:block");
-        $("#alert-signup").text("Must have a Name, Email, and Password!")
+        $("#alert-signup").text("Something went Wrong :( -Account Not Created.")
        }else if(data[1] === true){
            $("#alert-signup").attr("style", "display:none");
            window.location.replace("/login");

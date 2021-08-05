@@ -9,13 +9,13 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 });
 router.get("/",  function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 router.get("/login",  function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 router.get("/signup",  function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 module.exports = router
 
