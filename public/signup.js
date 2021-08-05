@@ -11,17 +11,17 @@ $("#signupSubmit").on("submit", (e)=>{
     signupRequest(newUser);
 })
 function signupRequest(user){
-    console.log(user)
-    if(user.email === "" || user.password === ""|| user.name === ""){
-        $("#alert-signup").attr("style", "display:block");
-        $("#alert-signup").text("Must have a Name, Email, and Password!")
+    if(user.email === "" || user.password === "" || user.name === ""){
+        $("#alert").attr("style", "display:block");
+        $("#alert").text("Must have a Name, Email, and Password!")
+        return;
     }
     $.post("/api/signup", user).then((data) => {
        if(data[1]=== false){
-        $("#alert-signup").attr("style", "display:block");
-        $("#alert-signup").text("Something went Wrong :( -Account Not Created.")
+        $("#alert").attr("style", "display:block");
+        $("#alert").text("Something went Wrong :( -Account Not Created.")
        }else if(data[1] === true){
-           $("#alert-signup").attr("style", "display:none");
+           $("#alert").attr("style", "display:none");
            window.location.replace("/login");
        }
        else{
