@@ -51,3 +51,11 @@ form{
 input{
     margin-bottom:5px;
 }
+#alert{
+    display:none;
+    width:100%;
+    text-align: center;
+    color: rgb(180, 8, 8);
+    font-size: 22px;
+    font-weight: 600;
+}
