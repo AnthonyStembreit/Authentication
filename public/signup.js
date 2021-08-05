@@ -13,10 +13,20 @@ $("#signupSubmit").on("submit", (e)=>{
 function signupRequest(user){
     console.log(user)
     if(user.email === "" || user.password === ""|| user.name === ""){
-        console.log("Must have a Name, Email, and Password!")
+        $("#alert-signup").attr("style", "display:block");
+        $("#alert-signup").text("Must have a Name, Email, and Password!")
     }
     $.post("/api/signup", user).then((data) => {
-        window.location.replace("/login");
+       if(data[1]=== false){
+        $("#alert-signup").attr("style", "display:block");
+        $("#alert-signup").text("Must have a Name, Email, and Password!")
+       }else if(data[1] === true){
+           $("#alert-signup").attr("style", "display:none");
+           window.location.replace("/login");
+       }
+       else{
+           console.log(data[1])
+       }
     }).catch(function(err) {
         console.log(err);
       });

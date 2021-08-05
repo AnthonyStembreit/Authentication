@@ -11,19 +11,19 @@ $("#loginSubmit").on("submit", (e)=>{
 function loginRequest(user){
     console.log(user)
     if(user.email === "" || user.password === ""){
-        console.log("Must have an Email and Password!")
-        $("#alert").attr("style", "display:block");
-        $("#alert").text("Must have an Email and Password!")
+        $("#alert-login").text("Must have an Email and Password!")
+        $("#alert-login").attr("style", "display:block");
     }
     $.post("/api/login", user).then(function() {
+        $("#alert-login").attr("style", "display:none");
         window.location.replace("/dashboard");
       })
       .catch(function(err) {
-        console.log(err);
-        if(err.status === 401){
-            console.log("Email or Password is Wrong! Please try again.")
-            $("#alert").attr("style", "display:block");
-            $("#alert").text("Email or Password is Wrong! Please try again.")
+          if(err.status === 401){
+              $("#alert-login").text("Email or Password is Wrong! Please try again.")
+              $("#alert-login").attr("style", "display:block");
+            }else{
+            console.log(err);
         }
       });
 }
