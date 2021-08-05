@@ -12,10 +12,12 @@ $("#signupSubmit").on("submit", (e)=>{
 })
 function signupRequest(user){
     console.log(user)
-    if(user.email === "" || user.password === ""){
-        return "Must have an email and password!"
+    if(user.email === "" || user.password === ""|| user.name === ""){
+        console.log("Must have a Name, Email, and Password!")
     }
     $.post("/api/signup", user).then((data) => {
-        console.log(data)
-    })
+        window.location.replace("/login");
+    }).catch(function(err) {
+        console.log(err);
+      });
 }
