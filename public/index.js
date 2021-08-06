@@ -17,8 +17,8 @@ $(document).ready(()=>{
     }
     function signupDisplay(){ 
         let label = $("<label>Name</label>").attr("for", "name-input")
-        $("#top-label").prepend($("<input>").attr("id", "name-input"));
-        $("#top-label").prepend(label);
+        $("#formSubmit").prepend(label, $("<input>").attr("id", "name-input"));
+        
         $("#login-nav").removeClass("active-nav");
         $("#form-label").text("Signup Below:");
         $("#formBtn").text("Signup");

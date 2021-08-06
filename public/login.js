@@ -1,8 +1,12 @@
-$("#loginSubmit").on("submit", (e)=>{
+$("#formSubmit").on("submit", (e)=>{
     e.preventDefault();
+    let name = ""
+    if(e.target.value === "Signup"){
+        name =     $("#name-input").val("");
+    }
     let userInfo = {
-        email: $("#email-login").val(),
-        password: $("#password-login").val()
+        email: $("#email-input").val(),
+        password: $("#password-input").val()
     }
     $("#password-login").val("")
     $("#email-login").val("")
