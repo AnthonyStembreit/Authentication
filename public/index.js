@@ -10,17 +10,18 @@ $(document).ready(()=>{
         default:   signupDisplay();
     }
     function loginDisplay(){
-        $("#signupSubmit").removeClass("active-form");
         $("#signup-nav").removeClass("active-nav");
         $("#form-label").text("Login Here:");
+        $("#formBtn").text("Login");
         $("#login-nav").addClass("active-nav");
-        $("#loginSubmit").addClass("active-form");
     }
-    function signupDisplay(){
-        $("#loginSubmit").removeClass("active-form");
+    function signupDisplay(){ 
+        let label = $("<label>Name</label>").attr("for", "name-input")
+        $("#top-label").prepend($("<input>").attr("id", "name-input"));
+        $("#top-label").prepend(label);
         $("#login-nav").removeClass("active-nav");
         $("#form-label").text("Signup Below:");
+        $("#formBtn").text("Signup");
         $("#signup-nav").addClass("active-nav");
-        $("#signupSubmit").addClass("active-form");
     }
 })
