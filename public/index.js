@@ -31,12 +31,12 @@ $(document).ready(()=>{
             password: $("#password-input").val()
         }
     
-        if($("#formBtn").val() === "Signup"){
+        if($("#formBtn").text() === "Signup"){
             userInfo.name = $("#name-input").val();
             $("#name-input").val("");
             signupRequest(userInfo);
         }
-        else if($("#formBtn").val() === "Login"){
+        else if($("#formBtn").text() === "Login"){
             loginRequest(userInfo)
         }
         $("#password-input").val("")
