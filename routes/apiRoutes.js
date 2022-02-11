@@ -10,6 +10,7 @@ router.post("/api/signup", async (req, res) => {
             where: { email: req.body.email },
             defaults: req.body
         });
+        console.log(newUser)
         res.json(newUser)
     } catch (error) {
         console.log(error)

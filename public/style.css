@@ -52,6 +52,9 @@ form{
 input{
     margin-bottom:5px;
 }
+.hide{
+    display:none
+}
 #alert{
     display:none;
     width:100%;

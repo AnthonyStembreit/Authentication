@@ -11,6 +11,9 @@ router.get("/dashboard", isAuthenticated, function(req, res) {
 router.get("/",  function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+router.get("/password",  function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 router.get("/login",  function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
 });

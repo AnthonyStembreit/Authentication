@@ -2,11 +2,12 @@ $(document).ready(()=>{
     switch(window.location.pathname){
         case "/login":loginDisplay();
         break;
-        case "/signup":  signupDisplay();
+        case "/signup": signupDisplay();
         break;
-        case "/":  signupDisplay();
+        case "/password": passwordResetDisplay();
+        case "/": signupDisplay();
         break;
-        default:   signupDisplay();
+        default: signupDisplay();
     }
 
     function loginDisplay(){
@@ -15,7 +16,7 @@ $(document).ready(()=>{
         $("#formBtn").text("Login");
         $("#login-nav").addClass("active-nav");
     }
-    
+
     function signupDisplay(){ 
         let label = $("<label>Name</label>").attr("for", "name-input");
         $("#formSubmit").prepend(label, $("<input>").attr("id", "name-input"));
@@ -24,6 +25,17 @@ $(document).ready(()=>{
         $("#formBtn").text("Signup");
         $("#signup-nav").addClass("active-nav");
     }
+    function passwordResetDisplay(){
+        $("#formSubmit").addClass("hide");
+        $("#passResetForm").removeClass("hide");
+    }
+
+    $("#passResetForm").on("submit", (e)=>{
+        e.preventDefault();
+        console.log(e)
+        console.log($("#reset-email").val())
+        
+    })
 
     $("#formSubmit").on("submit", (e)=>{
         e.preventDefault();
@@ -70,9 +82,9 @@ $(document).ready(()=>{
             return;
         }
         $.post("/api/signup", user).then((data) => {
-           if(data[1]=== false){
+           if(data[1] === false){
             $("#alert").attr("style", "display:block");
-            $("#alert").text("Something went Wrong :( -Account Not Created.")
+            $("#alert").text("Something went Wrong :( Account Not Created.")
            }else if(data[1] === true){
                $("#alert").attr("style", "display:none");
                window.location.replace("/login");
