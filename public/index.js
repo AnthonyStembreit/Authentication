@@ -32,9 +32,19 @@ $(document).ready(()=>{
 
     $("#passResetForm").on("submit", (e)=>{
         e.preventDefault();
-        console.log(e)
-        console.log($("#reset-email").val())
-        
+        var email = $("#reset-email").val()
+       $.post("/api/user/password", {email: email}).then(function() {
+        $("#alert").text("Check Your Email!")
+        $("#alert").attr("style", "display:block");
+      })
+      .catch(function(err) {
+          if(err.status === 401){
+              $("#alert").text("Email not found!")
+              $("#alert").attr("style", "display:block");
+            }else{
+            console.log(err);
+        }
+      })
     })
 
     $("#formSubmit").on("submit", (e)=>{
