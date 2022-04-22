@@ -33,7 +33,7 @@ $(document).ready(()=>{
     $("#passResetForm").on("submit", (e)=>{
         e.preventDefault();
         var email = $("#reset-email").val()
-       $.post("/api/user/password", {email: email}).then(function() {
+       $.post("/api/user/forgot-password", {email: email}).then(function() {
         $("#alert").text("Check Your Email!")
         $("#alert").attr("style", "display:block");
       })

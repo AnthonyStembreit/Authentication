@@ -1,3 +1,4 @@
 const User = require('./User');
+const ResetToken= require("./ResetToken")
 
-module.exports = User
+module.exports = {User, ResetToken}
