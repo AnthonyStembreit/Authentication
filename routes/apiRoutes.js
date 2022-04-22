@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const express = require('express');
+const bcrypt = require('bcrypt');
 const router = express.Router();
 const {User, ResetToken} = require('../models');
 var passport = require("../config/passport");
@@ -23,7 +24,6 @@ router.post("/api/signup", async (req, res) => {
       where: { email: req.body.email },
       defaults: req.body
     });
-    console.log(newUser)
     res.json(newUser)
   } catch (error) {
     console.log(error)
@@ -54,7 +54,6 @@ router.post("/api/user/forgot-password", async function (req, res) {
       email: req.body.email
     }
   })
-  console.log(user)
   if (!user.email) {
     res.status(401).json({});
   } else {
@@ -88,8 +87,7 @@ router.post("/api/user/forgot-password", async function (req, res) {
       from: process.env.SENDER_ADDRESS,
       to: user.email,
       subject: "Password Reset",
-      text: 'To reset your password, please click the link below.\n\nhttps://localhost:3001/reset-password/?token=' + encodeURIComponent(token) + '&email=' + req.body.email
-      //'To reset your password, please click the link below.\n\nhttps://'+process.env.DOMAIN+'/user/reset-password?token='+encodeURIComponent(token)+'&email='+req.body.email
+      text: 'To reset your password, please click the link below.\n\nhttps://'+process.env.DOMAIN+'/reset-password/?token=' + encodeURIComponent(token) + '&email=' +  user.email
     };
     //send email
     transport.sendMail(message, function (err, info) {
@@ -104,8 +102,6 @@ router.post("/api/user/forgot-password", async function (req, res) {
   }
 });
 router.post("/api/user/validate-token", async function (req, res) {
-  //kJviaClq5JsCaKeuQhAWMeCrjr6D3yLe%2FTgfiyoCBQNGLmZi6SBer4gnHZPFCaGjgh7lU2k%2BxFN6urqDvkyErw%3D%3D
-  //http://localhost:3001/reset-password/?token={token}&email=dragonstembrite@gmail.com
   await ResetToken.destroy({
       where: {
           expiration: { [Op.lt]: Sequelize.fn('CURDATE') },
@@ -132,4 +128,41 @@ router.post("/api/user/validate-token", async function (req, res) {
       record: record
   })
 });
+//updates the user with the new password
+router.post('/api/user/update-password', async function (req, res) {
+  let user = req.body.userRecord
+  //checks to make sure the token has not expired
+  let record = await ResetToken.findOne({
+      where: {
+          email: user.email,
+          expiration: { [Op.gt]: Sequelize.fn('CURDATE') },
+          token: user.token,
+          used: 0
+      }
+  });
+  //sends an error message if no token is found
+  if (record == null) {
+      return res.json({ status: 'error', message: 'Token not found. Please try the reset password process again.' });
+  }
+  //updates the token to show it has been used
+  await ResetToken.update({
+      used: 1
+  },
+      {
+          where: {
+              email: user.email
+          }
+      });
+  //hashes new password
+  let newPassword = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null);
+  //updates the password for the associated user
+  await User.update({
+      password: newPassword
+  }, {
+      where: {
+          email: user.email
+      }
+  });
+  return res.json({ status: 'ok', message: 'Password reset. Please login with your new password.' });
+})
 module.exports = router

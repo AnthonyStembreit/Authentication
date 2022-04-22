@@ -1,3 +1,4 @@
+let user;
 function validateToken(){
     let paramArr = window.location.href.split('?token=')[1].split('&email=');
     let params = {
@@ -13,6 +14,7 @@ function validateToken(){
             $("#alert").attr("style", "display:block");
         }else{
             $("#reset-form").attr("style", "display:block");
+            user = res.record
         }
     })
     .catch(function(err) {
@@ -20,9 +22,7 @@ function validateToken(){
             $("#reset-form").attr("style", "display:none");
             $("#alert").text("Something Went Wrong!")
             $("#alert").attr("style", "display:block");
-          }else{
-          console.log(err);
-      }
+          }
     })
 }
 $(document).ready(() => {
@@ -40,7 +40,21 @@ $("#reset-form").on("submit", e => {
         $("#alert").attr("style", "display:block");
     }
     else{
-        console.log("now ajax call")
+        let params = {
+            password: newPass,
+            userRecord: user
+        }
+        $.post("/api/user/update-password", params).then(function(res) {
+            $("#alert").text(res.message)
+            $("#alert").attr("style", "display:block");
+        })
+        .catch(function(err) {
+            if(err){
+                $("#reset-form").attr("style", "display:none");
+                $("#alert").text("Something Went Wrong!")
+                $("#alert").attr("style", "display:block");
+              }
+        })
     }
 })
 $("#new-password").dblclick(e=>{
